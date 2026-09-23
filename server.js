@@ -34,11 +34,6 @@ async function getAccessToken() {
 app.get("/check", async (req, res) => {
   const phone = req.query.phone;
 
-  // Security check
-  if (req.headers["x-api-key"] !== process.env.INTERNAL_API_KEY) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
   if (!phone) {
     return res.status(400).json({ error: "Phone number is required" });
   }
