@@ -33,6 +33,7 @@ async function getAccessToken() {
 
 app.get("/check", async (req, res) => {
   const phone = req.query.phone;
+  console.log("Checking phone:", phone);
 
   if (!phone) {
     return res.status(400).json({ error: "Phone number is required" });
@@ -56,6 +57,7 @@ app.get("/check", async (req, res) => {
     });
 
     res.json({ phone, duplicate: !!match });
+    console.log("Result:", phone, "duplicate:", !!match);
   } catch (err) {
     res.status(500).json({ error: "Shopify API call failed", details: err.message });
   }
